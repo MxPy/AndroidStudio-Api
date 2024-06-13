@@ -103,7 +103,7 @@ class CategoryListFragment : Fragment(), Callback<CharactersResponse>,
 
     override fun onCharacterClick(character: CharactersResponse.Character) {
         val action =
-            CategoryListFragmentDirections.actionCategoryListFragmentToJokeListFragment(character.id.toString())
+            CategoryListFragmentDirections.actionCategoryListFragmentToJokeListFragment(character.name.toString(), character.status.toString(), character.species.toString(), character.gender.toString(), character.episodes.toTypedArray())
         findNavController().navigate(action)
     }
 }

@@ -22,58 +22,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/amount_group"
-
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:singleSelection="true"
-                tools:layout_editor_absoluteX="160dp"
-                tools:layout_editor_absoluteY="156dp">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/jokes_4_chip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:checkable="true"
-                    android:checked="true"
-                    android:minWidth="56dp"
-                    android:text="4"
-                    android:textAlignment="center"
-                    tools:ignore="HardcodedText" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/jokes_6_chip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:checkable="true"
-                    android:checked="false"
-                    android:text="6"
-                    tools:ignore="HardcodedText" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/jokes_8_chip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:checkable="true"
-                    android:checked="false"
-                    android:text="8"
-                    tools:ignore="HardcodedText" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/jokes_10_chip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:checkable="true"
-                    android:checked="false"
-                    android:text="10"
-                    tools:ignore="HardcodedText" />
-            </com.google.android.material.chip.ChipGroup>
-
             <Button
                 android:id="@+id/get_jokes_button"
                 android:layout_width="0dp"
@@ -86,6 +34,46 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/Name"
+                android:layout_width="78dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/get_jokes_button" />
+
+            <TextView
+                android:id="@+id/Status"
+                android:layout_width="68dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@+id/Name"
+                app:layout_constraintTop_toBottomOf="@+id/get_jokes_button" />
+
+            <TextView
+                android:id="@+id/Species"
+                android:layout_width="71dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@+id/Status"
+                app:layout_constraintTop_toBottomOf="@+id/get_jokes_button" />
+
+            <TextView
+                android:id="@+id/Gender"
+                android:layout_width="62dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@+id/Species"
+                app:layout_constraintTop_toBottomOf="@+id/get_jokes_button" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

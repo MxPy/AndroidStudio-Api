@@ -1,7 +1,7 @@
 package com.example.jokeapp.retrofit
 
 import com.example.jokeapp.model.CategoriesResponse
-import com.example.jokeapp.model.JokesResponse
+import com.example.jokeapp.model.EpisodeResponse
 import com.example.rickandmortyapp.model.CharactersResponse
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -82,11 +82,8 @@ interface ApiService {
 // Examples:
 // https://v2.jokeapi.dev/joke/Programming?type=single&amount=2
 // https://v2.jokeapi.dev/joke/Miscellaneous?type=twopart&amount=2
-//    @GET("character/{id}")
-//    fun getJoke(
-//        @Path("id") id: String,
-//        @Query("amount") amount: Int,
-//        @Query("blacklistFlags") flags: String? = null,
-//        @Query("type") type: String? = null
-//    ): Call<JokesResponse>
+    @GET("character/{id}")
+    fun getJoke(
+        @Path("id") id: String
+    ): Call<List<EpisodeResponse>>
 }

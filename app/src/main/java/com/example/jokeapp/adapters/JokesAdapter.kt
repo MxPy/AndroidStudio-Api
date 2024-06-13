@@ -10,42 +10,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.jokeapp.R
 import com.example.jokeapp.databinding.JokeListItemBinding
 import com.example.jokeapp.extensions.substringBeforeNthDelimiter
+import com.example.jokeapp.model.EpisodeResponse
 import com.example.jokeapp.model.Joke
 
-// Adapter for the list of jokes using ListAdapter class for simplified list updates
-// The adapter takes a JokeClickListener interface as a parameter to handle the click events
-class JokesAdapter(val listener: JokeClickListener): ListAdapter<Joke, JokesAdapter.ViewHolder>(JokesDiffCallback){
-    // ViewHolder class for the adapter representing the individual items in the list
-    inner class ViewHolder(private val binding: JokeListItemBinding): RecyclerView.ViewHolder(binding.root){
-        // function to bind the data to the ViewHolder and set the click listener
-        fun bind(joke: Joke) {
-// Set the category abbreviation
-            binding.jokeCategoryAbbr.text = joke.category.substring(0, 2)
-// Set the short text for the joke item. When the joke is a two-part joke,
-// show the part of a setup and when it is a single-part joke,
-// show the part of the joke text
-            binding.jokeShort.text =
-                if (joke.type == getString(binding.root.context, R.string.twopart_joke_type)) {
-// Get the first two words of the setup with extension function
-// created in StringExtensions.kt
-                    joke.setup?.substringBeforeNthDelimiter(' ', 2) + "..."
-                } else {
-// Get the first two words of the joke with extension function
-// created in StringExtensions.kt
-                    joke.joke?.substringBeforeNthDelimiter(' ', 2) + "..."
-                }
-// Handle the visibility of the flag icon based on the flags set for the joke
-// - if any flag is set show the icon
-            if (joke.flags.areNotSet())
-                binding.flag.visibility = View.GONE
-            else
-                binding.flag.visibility = View.VISIBLE
-// Set the click listener for the item
+class JokesAdapter(val listener: JokeClickListener): ListAdapter<EpisodeResponse, JokesAdapter.ViewHolder>(JokesDiffCallback) {
+
+    inner class ViewHolder(private val binding: JokeListItemBinding): RecyclerView.ViewHolder(binding.root) {
+        fun bind(episode: EpisodeResponse) {
+            binding.jokeCategoryAbbr.text = episode.episode.take(3)
+            binding.jokeShort.text = "${episode.name.take(15)}..."
+
+            // Usuwamy obsługę flag, ponieważ EpisodeResponse ich nie ma
+
             binding.root.setOnClickListener {
-                listener.onJokeClick(joke)
+                listener.onJokeClick(episode)
             }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -54,21 +34,21 @@ class JokesAdapter(val listener: JokeClickListener): ListAdapter<Joke, JokesAdap
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val joke = getItem(position)
-        holder.bind(joke)
+        val episode = getItem(position)
+        holder.bind(episode)
     }
+
     interface JokeClickListener {
-        fun onJokeClick(joke: Joke)
+        fun onJokeClick(episode: EpisodeResponse)
     }
 }
-// DiffCallback for the ListAdapter to calculate the difference between the old and new items
-object JokesDiffCallback: DiffUtil.ItemCallback<Joke>(){
-    override fun areItemsTheSame(oldItem: Joke, newItem: Joke): Boolean {
+
+object JokesDiffCallback: DiffUtil.ItemCallback<EpisodeResponse>() {
+    override fun areItemsTheSame(oldItem: EpisodeResponse, newItem: EpisodeResponse): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: Joke, newItem: Joke): Boolean {
+    override fun areContentsTheSame(oldItem: EpisodeResponse, newItem: EpisodeResponse): Boolean {
         return oldItem == newItem
     }
-
 }

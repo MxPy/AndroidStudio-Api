@@ -25,7 +25,22 @@
             android:id="@+id/action_JokeListFragment_to_CategoryListFragment"
             app:destination="@id/CategoryListFragment" />
         <argument
-            android:name="category"
+            android:name="Name"
             app:argType="string" />
+        <argument
+            android:name="Status"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="Species"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="Gender"
+            app:argType="string"
+            app:nullable="true" />
+        <argument android:name="Episodes"
+            app:argType="string[]"
+            app:nullable="true" />
     </fragment>
 </navigation>
